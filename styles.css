@@ -31,11 +31,7 @@ body {
   fill: white;
 }
 
-#pianoRollContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+
 
 h1 {
   margin-bottom: 20px;
@@ -73,14 +69,37 @@ button:hover {
   border: 2px solid #381815;
 }
 
+#pianoRollContainer {
+  padding:30px;
+  display: grid;
+  justify-content:space-between;
+  grid-template-columns: repeat(3,1fr);
+  grid-gap: 30px;
+}
+
 .piano-roll-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid #ccc;
   margin-bottom: 10px;
   padding: 10px;
-  width: 50%;
   box-sizing: border-box;
 }
 
 .description {
   margin-top: 10px;
+}
+
+@media (max-width:767px){
+  h1{
+    font-size:30px;
+  }
+  #pianoRollContainer{
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    justify-content: center;
+  }
+  .piano-roll-card{
+    display:block;
+  }
 }
