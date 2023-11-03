@@ -1,4 +1,5 @@
 import PianoRoll from './pianoroll.js';
+import { clear, createMainCard } from './mainRoll.js';
 
 class PianoRollDisplay {
   constructor(csvURL) {
@@ -25,7 +26,7 @@ class PianoRollDisplay {
     // Create and append other elements to the card container as needed
     const descriptionDiv = document.createElement('div');
     descriptionDiv.classList.add('description');
-    descriptionDiv.textContent = `This is a piano roll number ${rollId}`;
+    descriptionDiv.textContent = `This is a piano roll number ${rollId + 1}`;
     cardDiv.appendChild(descriptionDiv);
 
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -36,15 +37,20 @@ class PianoRollDisplay {
     // Append the SVG to the card container
     cardDiv.appendChild(svg);
 
+    cardDiv.addEventListener('click', () => {
+      createMainCard(svg, descriptionDiv)
+    });
+
     return { cardDiv, svg }
   }
 
   async generateSVGs() {
     if (!this.data) await this.loadPianoRollData();
     if (!this.data) return;
-    
+
     const pianoRollContainer = document.getElementById('pianoRollContainer');
-    pianoRollContainer.innerHTML = '';
+    pianoRollContainer.clear = '';
+    clear(pianoRollContainer);
     for (let it = 0; it < 20; it++) {
       const start = it * 60;
       const end = start + 60;
