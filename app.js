@@ -63,8 +63,13 @@ class PianoRollDisplay {
     }
   }
 }
+const hedingText = document.getElementById('heading');
+const loadCSVButton = document.getElementById('loadCSV');
 
-document.getElementById('loadCSV').addEventListener('click', async () => {
+loadCSVButton.addEventListener('click', async () => {
   const csvToSVG = new PianoRollDisplay();
   await csvToSVG.generateSVGs();
+
+  loadCSVButton.parentNode.removeChild(loadCSVButton);
+  hedingText.style.cssText = 'display: none'
 });
