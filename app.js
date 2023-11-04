@@ -5,7 +5,7 @@ class PianoRollDisplay {
   constructor(csvURL) {
     this.csvURL = csvURL;
     this.data = null;
-  }
+  };
 
   async loadPianoRollData() {
     try {
@@ -16,8 +16,8 @@ class PianoRollDisplay {
       this.data = await response.json();
     } catch (error) {
       console.error('Error loading data:', error);
-    }
-  }
+    };
+  };
 
   preparePianoRollCard(rollId) {
     const cardDiv = document.createElement('div');
@@ -38,11 +38,11 @@ class PianoRollDisplay {
     cardDiv.appendChild(svg);
 
     cardDiv.addEventListener('click', () => {
-      createMainCard(svg, descriptionDiv)
+      createMainCard(svg, descriptionDiv);
     });
 
-    return { cardDiv, svg }
-  }
+    return { cardDiv, svg };
+  };
 
   async generateSVGs() {
     if (!this.data) await this.loadPianoRollData();
@@ -56,13 +56,13 @@ class PianoRollDisplay {
       const end = start + 60;
       const partData = this.data.slice(start, end);
 
-      const { cardDiv, svg } = this.preparePianoRollCard(it)
+      const { cardDiv, svg } = this.preparePianoRollCard(it);
 
       pianoRollContainer.appendChild(cardDiv);
       const roll = new PianoRoll(svg, partData);
-    }
-  }
-}
+    };
+  };
+};
 const hedingText = document.getElementById('heading');
 const loadCSVButton = document.getElementById('loadCSV');
 
@@ -71,5 +71,5 @@ loadCSVButton.addEventListener('click', async () => {
   await csvToSVG.generateSVGs();
 
   loadCSVButton.parentNode.removeChild(loadCSVButton);
-  hedingText.style.cssText = 'display: none'
+  hedingText.style.cssText = 'display: none';
 });

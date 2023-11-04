@@ -1,8 +1,8 @@
 export function clear(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
-    }
-}
+    };
+};
 
 export function createMainCard(svg, descriptionDiv) {
     const mainCardContainer = document.getElementById('large-svg-container');
@@ -21,10 +21,10 @@ export function createMainCard(svg, descriptionDiv) {
     const mainCard = document.querySelector('.main-card');
 
     mainCard.style.cssText = 'margin: 20px; padding: 20px; height: 350px;';
-    mainCardContainer.style.cssText = 'padding: 5px'
-    mainCardDescription.style.cssText = 'padding: 5px'
+    mainCardContainer.style.cssText = 'padding: 5px';
+    mainCardDescription.style.cssText = 'padding: 5px';
     mainContainer.style.cssText = 'grid-template-columns: 2fr 1fr; grid-column-gap: 20px;';
     pianoRollContainer.style.cssText = 'grid-template-columns: 1fr';
 
-    return { mainCardContainer, cardDescription: mainCardDescription }
-}
+    return { mainCardContainer, mainCardDescription };
+};
